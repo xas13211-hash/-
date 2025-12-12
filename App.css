@@ -1,0 +1,848 @@
+/* App.css */
+:root {
+  --bg-main: #0e0e0e;
+  --bg-sidebar: #181818;
+  --bg-panel: #151617;
+  --border-color: #2a2b2e;
+  --text-primary: #E3E3E3;
+  --text-secondary: #9aa0a6;
+  --accent-color: #4B9CFF;
+  --green-main: #2ebd85;
+  --red-main: #f6465d;
+  --hover-bg: #303134;
+}
+
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Noto Sans KR', sans-serif;
+  overflow: hidden;
+}
+
+/* 전체 레이아웃 (가로 배치) */
+.app-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- [1] 사이드바 스타일 --- */
+.sidebar {
+  background-color: var(--bg-sidebar);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: width 0.3s ease;
+  height: 100%;
+  border-right: 1px solid var(--border-color);
+  z-index: 10;
+}
+
+.sidebar.open {
+  width: 240px;
+}
+
+.sidebar.closed {
+  width: 60px;
+  align-items: center;
+}
+
+.sidebar-top {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sidebar.closed .sidebar-top {
+  padding-left: 0;
+  justify-content: center;
+}
+
+.menu-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-toggle-btn:hover {
+  background-color: var(--hover-bg);
+}
+
+.app-logo-text {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.sidebar-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  padding: 12px 18px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 48px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.sidebar.closed .menu-item {
+  justify-content: center;
+  padding: 0;
+  width: 60px;
+}
+
+.menu-item:hover {
+  background-color: var(--hover-bg);
+  color: #fff;
+}
+
+.menu-item.active {
+  background-color: #2C3E50;
+  color: var(--accent-color);
+  border-right: 3px solid var(--accent-color);
+}
+
+.icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  margin-left: 12px;
+  white-space: nowrap;
+}
+
+.sidebar.closed .label,
+.sidebar.closed .app-logo-text {
+  display: none;
+}
+
+.sidebar-footer {
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* --- [2] 메인 컨텐츠 영역 --- */
+.main-content-area {
+  flex: 1;
+  background-color: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  /* 중요: 남은 공간 꽉 채우기 */
+}
+
+/* --- [3] 대시보드 내부 스타일 (기존 유지) --- */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  gap: 10px;
+}
+
+.header-card {
+  background-color: var(--bg-panel);
+  border-radius: 4px;
+  padding: 0 20px;
+  height: 50px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+}
+
+.header-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.symbol-group {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.price-group {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.main-chart-card {
+  flex: 1;
+  background-color: var(--bg-panel);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  position: relative;
+  min-height: 0;
+  padding: 0;
+  /* 차트 패딩 제거 */
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.bottom-row {
+  height: 300px;
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.bottom-card {
+  flex: 1;
+  background-color: var(--bg-panel);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-title {
+  padding: 10px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.backtest-chart-wrapper {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.fills-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+}
+
+.fill-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid #2a2b2e;
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+/* --- [4] 채팅창 스타일 --- */
+.full-chat-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-main);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.chat-messages-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chat-input-wrapper {
+  padding: 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input-wrapper input {
+  flex: 1;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  padding: 15px;
+  border-radius: 8px;
+  color: white;
+}
+
+.chat-input-wrapper button {
+  width: 50px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--accent-color);
+  color: white;
+  cursor: pointer;
+}
+
+.report-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: var(--bg-main);
+  gap: 20px;
+}
+
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.report-title {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+}
+
+.report-tabs {
+  display: flex;
+  background-color: var(--bg-panel);
+  border-radius: 8px;
+  padding: 4px;
+  gap: 5px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  background-color: var(--accent-color);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.report-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.generate-btn {
+  background-color: var(--green-main);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.generate-btn:disabled {
+  background-color: #444;
+  cursor: not-allowed;
+}
+
+.last-updated {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* 보고서 종이 영역 */
+.report-paper {
+  flex: 1;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 40px;
+  overflow-y: auto;
+  color: #e0e0e0;
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.8;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.markdown-body h1 {
+  font-size: 24px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.markdown-body h2 {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.markdown-body ul {
+  padding-left: 20px;
+}
+
+.markdown-body li {
+  margin-bottom: 8px;
+}
+
+/* 로딩 스피너 */
+.loading-spinner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- [6] 채팅창 마크다운 스타일 --- */
+.markdown-content {
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.markdown-content p {
+  margin: 0 0 10px 0;
+  /* 문단 아래 여백 */
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin: 5px 0 10px 0;
+  padding-left: 20px;
+  /* 리스트 들여쓰기 */
+}
+
+.markdown-content li {
+  margin-bottom: 4px;
+}
+
+.markdown-content strong {
+  color: #FFD700;
+  /* 강조(굵게)는 금색으로 포인트 */
+  font-weight: 700;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  margin: 10px 0 5px 0;
+  color: #4B9CFF;
+  font-size: 16px;
+}
+
+/* --- [7] 실시간 체결 목록 정렬 (오와 열 맞추기) --- */
+
+/* 헤더 스타일 */
+.fills-header {
+  display: flex;
+  padding: 8px 15px;
+  /* 좌우 여백 fill-item과 동일하게 */
+  border-bottom: 1px solid var(--border-color);
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.02);
+  /* 헤더만 살짝 밝게 */
+}
+
+/* 리스트 아이템 스타일 수정 */
+.fill-item {
+  display: flex;
+  padding: 6px 15px;
+  /* 좌우 여백 헤더와 동일하게 */
+  border-bottom: 1px solid #2a2b2e;
+  font-size: 12px;
+  align-items: center;
+}
+
+.fill-item:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* --- 컬럼별 너비 및 정렬 설정 --- */
+
+/* 1. 포지션 (BUY/SELL) : 왼쪽 정렬 */
+.cell-side {
+  flex: 1;
+  /* 비율 1 */
+  text-align: left;
+  min-width: 50px;
+}
+
+/* 2. 가격 : 오른쪽 정렬 */
+.cell-price {
+  flex: 2;
+  /* 비율 2 (좀 더 넓게) */
+  text-align: right;
+  color: #fff;
+  font-family: 'Roboto Mono', monospace;
+  /* 숫자 전용 폰트 */
+}
+
+/* 3. 크기 : 오른쪽 정렬 */
+.cell-size {
+  flex: 1.5;
+  /* 비율 1.5 */
+  text-align: right;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* --- [8] 백테스트 차트 툴팁 스타일 --- */
+.chart-tooltip {
+  position: absolute;
+  display: none;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 12px;
+  text-align: left;
+  z-index: 1000;
+  top: 12px;
+  left: 12px;
+  pointer-events: none;
+  border-radius: 4px;
+  background-color: rgba(30, 30, 30, 0.9);
+  /* 반투명 검정 */
+  border: 1px solid #444;
+  color: #eee;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  min-width: 180px;
+}
+
+.tooltip-title {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #aaa;
+  border-bottom: 1px solid #555;
+  padding-bottom: 4px;
+}
+
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.win {
+  color: #2ebd85;
+}
+
+.loss {
+  color: #f6465d;
+}
+
+
+
+
+
+
+
+/* 투자 성향 테스트 스타일 */
+.test-title {
+  font-size: 26px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.test-question {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.test-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.test-option-btn {
+  width: 100%;
+  padding: 14px 18px;
+  background: #4b9cff;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.15s;
+}
+
+.test-option-btn:hover {
+  background: #2e7be0;
+  transform: translateY(-2px);
+}
+
+.test-progress {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+}
+
+/* 테스트 완료 화면 스타일 */
+.test-complete-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 9999;
+}
+
+.test-complete-container.fade-in {
+  opacity: 1;
+}
+
+.test-complete-box {
+  text-align: center;
+  color: white;
+  animation: pop 0.6s ease-out;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.test-complete-title {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+
+.test-complete-sub {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-bottom: 30px;
+}
+
+.test-complete-btn {
+  background: #4b9cff;
+  color: white;
+  padding: 12px 26px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.test-complete-btn:hover {
+  background: #3477d4;
+}
+
+/* =========================================
+   보고서 대시보드 (차트 & 레이아웃)
+   ========================================= */
+
+/* 1. 보고서 전체 컨테이너 (세로 정렬 & 스크롤) */
+.report-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: var(--bg-main);
+  gap: 15px;
+  /* 요소 사이 간격 */
+  overflow-y: auto;
+  /* 내용이 많으면 스크롤 */
+}
+
+/* 2. 상단 헤더 (제목 & 탭 버튼) */
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.report-title {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+}
+
+/* 탭 버튼 스타일 */
+.report-tabs {
+  display: flex;
+  background-color: var(--bg-panel);
+  border-radius: 8px;
+  padding: 4px;
+  gap: 5px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+
+/* 3. 자산 변동 그래프 카드 */
+.report-chart-card {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  height: 350px;
+  /* 차트 높이 고정 */
+  flex-shrink: 0;
+}
+
+.card-title-small {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.report-chart-wrapper {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  /* 남은 공간 꽉 채우기 */
+}
+
+
+/* 4. 하단 텍스트 보고서 영역 */
+.report-paper {
+  flex: 1;
+  /* 남은 공간 차지 */
+  min-height: 400px;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 40px;
+
+  color: #e0e0e0;
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.8;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}

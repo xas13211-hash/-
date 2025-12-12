@@ -1,0 +1,87 @@
+/* 화면 전체 덮는 인트로 */
+.intro-container {
+    position: fixed;
+    inset: 0;
+    background: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease-out;
+}
+
+/* 페이드아웃 */
+.intro-container.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 박스 */
+.intro-box {
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* 제목 */
+.intro-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* 텍스트 */
+.intro-text {
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* 버튼 */
+.intro-btn {
+    padding: 12px 26px;
+    font-size: 18px;
+    background-color: #4B9CFF;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.intro-btn:hover {
+    background-color: #357ddc;
+}
+
+/* 🤖 로고 애니메이션 */
+.intro-robot {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+/* 위아래로 통통 튀는 bounce 효과 */
+.bounce {
+    animation: bounce 1.8s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* 위에서 아래로 자연스러운 등장 */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

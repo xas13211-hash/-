@@ -1,0 +1,128 @@
+/* frontend/src/ChatComponent.css */
+.chat-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chat-toggle-btn {
+    padding: 15px 20px;
+    border-radius: 30px;
+    background-color: #00B06B;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.chat-container {
+    width: 350px;
+    height: 500px;
+    background-color: #1a1e23;
+    border: 1px solid #282b30;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+.chat-header {
+    padding: 15px;
+    background-color: #282b30;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.message.bot {
+    background-color: #2c3138;
+    align-self: flex-start;
+    color: #e6e6e6;
+}
+
+.message.user {
+    background-color: #0052cc;
+    align-self: flex-end;
+    color: white;
+}
+
+.chat-input-area {
+    padding: 10px;
+    border-top: 1px solid #282b30;
+    display: flex;
+    gap: 5px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    background-color: #121212;
+    border: 1px solid #444;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+/* 전략 카드 스타일 */
+.strategy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.strategy-card {
+    background-color: #25282e;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.card-header {
+    font-weight: bold;
+    color: #00B06B;
+    margin-bottom: 5px;
+}
+
+.card-stats {
+    font-size: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+}
+
+.win { color: #00B06B; }
+.loss { color: #FF3333; }
+
+.strategy-card button {
+    width: 100%;
+    padding: 6px;
+    background-color: #333;
+    border: 1px solid #555;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.strategy-card button:hover { background-color: #444; }
