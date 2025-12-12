@@ -1,0 +1,14 @@
+{
+    "current_position": 0.0,
+    "entry_price": 0.0,
+    "leverage": 3,
+    "chart_markers": [
+        {
+            "time": 1765596289,
+            "position": "belowBar",
+            "shape": "circle",
+            "color": "#FFFFFF",
+            "text": "System Start"
+        }
+    ]
+}
